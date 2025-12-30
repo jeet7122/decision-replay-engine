@@ -1,26 +1,42 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tailwindcss";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    /* Core Brand Colors */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    /* The "Indigo" Accent for the 'Decision' paths */
+    --color-primary: oklch(0.511 0.262 276.966); /* Indigo-600 */
+    --color-primary-foreground: oklch(0.985 0 0);
+
+    /* Neutrals for the 'Engine' feel */
+    --color-muted: oklch(0.967 0.003 264.542);
+    --color-muted-foreground: oklch(0.552 0.016 285.938);
+
+    --color-border: oklch(0.92 0.004 286.32);
+    --radius-lg: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.129 0.042 264.695); /* Deep Slate */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.129 0.042 264.695);
+
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.129 0.042 264.695);
+
+    --secondary: oklch(0.967 0.003 264.542);
+    --secondary-foreground: oklch(0.208 0.042 265.755);
+
+    --accent: oklch(0.967 0.003 264.542);
+    --accent-foreground: oklch(0.208 0.042 265.755);
+
+    --border: oklch(0.92 0.004 286.32);
+    --input: oklch(0.92 0.004 286.32);
+    --ring: oklch(0.511 0.262 276.966);
 }
