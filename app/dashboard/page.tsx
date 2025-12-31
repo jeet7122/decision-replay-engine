@@ -6,14 +6,19 @@ import { DecisionForm } from "@/components/dashboard/DecisionForm";
 import { OutcomeForm } from "@/components/dashboard/OutcomeForm";
 import { AIAnalysisView } from "@/components/dashboard/ai-analysis";
 import { HistoryCard } from "@/components/dashboard/HistoryCard";
-import { BrainCircuit, FileText, Activity, History } from "lucide-react";
+import {BrainCircuit, FileText, Activity, History, RefreshCcw} from "lucide-react";
+import {Card} from "@/components/ui/card";
 
 export default function DashboardPage() {
     // Logic to track which stage of the form the user is in
     const [activeStage, setActiveStage] = useState("decision");
     const [currentDecisionId, setCurrentDecisionId] = useState<string | null>(null);
+    const [aiData, setAiData] = useState<any | null>(null);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+
 
     return (
+
         <div className="container mx-auto p-4 md:p-8 space-y-12">
             {/* --- STEPPED FORM SECTION --- */}
             <section className="max-w-4xl mx-auto">
@@ -45,16 +50,24 @@ export default function DashboardPage() {
                     <TabsContent value="outcome">
                         <OutcomeForm
                             decisionId={currentDecisionId!}
-                            onComplete={() => setActiveStage("analysis")}
+                            onComplete={async () => {
+                                setIsAnalyzing(true);
+                                const response = await fetch(`/api/ai-analysis?decisionId=${currentDecisionId}`);
+                                const data = await response.json();
+                                setAiData(data);
+                                setIsAnalyzing(false);
+                                setActiveStage("analysis");
+                            }}
                         />
                     </TabsContent>
 
                     <TabsContent value="analysis">
                         <AIAnalysisView
-                            decisionId={currentDecisionId!}
+                            aiData={aiData}
                             onReset={() => {
                                 setActiveStage("decision");
                                 setCurrentDecisionId(null);
+                                setAiData(null);
                             }}
                         />
                     </TabsContent>
@@ -73,7 +86,6 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* We would map through your Prisma data here */}
                     <HistoryCard
-                        title="Used MongoDB"
                         outcomeStatus="negative"
                         date="Dec 28, 2025"
                         cost="12h"

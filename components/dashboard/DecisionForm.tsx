@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {saveDecision} from "@/lib/utils/decision-helper";
 
 export function DecisionForm({ onComplete }: { onComplete: (id: string) => void }) {
     const { register, handleSubmit, setValue, watch, control } = useForm({
@@ -27,9 +28,8 @@ export function DecisionForm({ onComplete }: { onComplete: (id: string) => void 
 
     const onSubmit = async (data: any) => {
         console.log("Saving Decision...", data);
-        // POST to API
-        // const res = await fetch('/api/decisions', { method: 'POST', body: JSON.stringify(data) })
-        onComplete("mock-id-123");
+        const savedDecision = await saveDecision(data);
+        onComplete(savedDecision.id);
     };
 
     return (

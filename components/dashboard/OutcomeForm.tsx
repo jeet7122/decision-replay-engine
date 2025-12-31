@@ -5,13 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertCircle, Clock } from "lucide-react";
+import {saveOutcome} from "@/lib/utils/outcome-helper";
+import {getResponseFromAI} from "@/lib/utils/ai-helper";
 
 export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; onComplete: () => void }) {
     const { register, handleSubmit, setValue } = useForm();
 
     const onSubmit = async (data: any) => {
         console.log(`Saving Outcome for ${decisionId}...`, data);
+        const savedOutcome = await saveOutcome(data, decisionId);
+        const aiResponse = await getResponseFromAI(decisionId);
         // API Call: POST /api/outcomes { ...data, decisionId }
+        console.log("AI RESPONSE: " + aiResponse);
         onComplete();
     };
 

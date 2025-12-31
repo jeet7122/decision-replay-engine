@@ -5,6 +5,7 @@ import FeaturesGrid from "@/components/home/features-grid";
 import OutcomeTracker from "@/components/home/outcome-tracker";
 
 export default function Home() {
+
   return (
     <div>
         <Hero/>
