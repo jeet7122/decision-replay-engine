@@ -7,12 +7,13 @@ import { eq } from "drizzle-orm";
 export async function POST(request: NextRequest) {
     try {
         // Pass the request as the first param, secret in second param
-        const evt = await verifyWebhook(request, {
-            signingSecret: process.env.JWT_SECRET as string,
-        });
+        const evt = await verifyWebhook(request);
 
         if (evt.type === "user.created") {
-            const { id: userId } = evt.data;
+            const { id : userId } = evt.data;
+            console.log(`Received webhook with ID ${userId} and event type of ${evt.type}`)
+            console.log('Webhook payload:', evt.data)
+
 
             const existing = await db
                 .select()
