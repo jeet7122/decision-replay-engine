@@ -31,7 +31,7 @@
 ## 💻 Installation
 
 1. Clone the repository:  
-   git clone https://github.com/yourusername/decision-replay-engine.git
+   git clone https://github.com/jeet7122/decision-replay-engine.git
 
 2. Install dependencies:  
    cd decision-replay-engine  
