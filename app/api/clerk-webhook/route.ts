@@ -11,9 +11,6 @@ export async function POST(request: NextRequest) {
 
         if (evt.type === "user.created") {
             const { id : userId } = evt.data;
-            console.log(`Received webhook with ID ${userId} and event type of ${evt.type}`)
-            console.log('Webhook payload:', evt.data)
-
 
             const existing = await db
                 .select()

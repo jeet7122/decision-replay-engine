@@ -28,7 +28,6 @@ export function DecisionForm({ onComplete }: { onComplete: (id: string) => void 
     });
 
     const onSubmit = async (data: any) => {
-        console.log("Saving Decision...", data);
         const savedDecision = await saveDecision(data);
         onComplete(savedDecision.id);
     };

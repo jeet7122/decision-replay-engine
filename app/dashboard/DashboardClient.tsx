@@ -54,7 +54,7 @@ export default function DashboardClient({userId}: Props) {
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const res = await fetch(`/dashboard/api?userId${userId}`);
+                const res = await fetch(`/dashboard/api?userId=${userId}`);
                 const data = await res.json();
                 setHistory(data);
             } catch (err) {

@@ -12,11 +12,9 @@ export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; on
     const { register, handleSubmit, setValue } = useForm();
 
     const onSubmit = async (data: any) => {
-        console.log(`Saving Outcome for ${decisionId}...`, data);
         const savedOutcome = await saveOutcome(data, decisionId);
         const aiResponse = await getResponseFromAI(decisionId);
         // API Call: POST /api/outcomes { ...data, decisionId }
-        console.log("AI RESPONSE: " + aiResponse);
         onComplete();
     };
 
