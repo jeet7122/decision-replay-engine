@@ -1,14 +1,27 @@
-import {NextRequest, NextResponse} from "next/server";
-import {getResponseFromAI} from "@/lib/utils/ai-helper";
+import { NextRequest, NextResponse } from "next/server";
+import { getResponseFromDB } from "@/lib/utils/ai-helper";
 
-export async function GET(req: NextRequest){
-    const decisionID = req.nextUrl.searchParams.get("decisionID");
-    if (!decisionID) return NextResponse.json({error: "decision not found"}, {status: 404});
-    try {
-        const aiData = await getResponseFromAI(decisionID);
-        return NextResponse.json(aiData);
+export async function GET(req: NextRequest) {
+    const decisionID = req.nextUrl.searchParams.get("decisionId");
+
+    if (!decisionID) {
+        return NextResponse.json(
+            { error: "decision not found" },
+            { status: 404 }
+        );
     }
-    catch(err){
-        console.log(err);
+
+    try {
+        const aiData = await getResponseFromDB(decisionID);
+
+        // ✅ aiData is now an OBJECT
+        return NextResponse.json(aiData);
+    } catch (err) {
+        console.error(err);
+
+        return NextResponse.json(
+            { error: "AI response not found" },
+            { status: 404 }
+        );
     }
 }

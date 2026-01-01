@@ -6,7 +6,7 @@ export function AIAnalysisView({ aiData, onReset }: { aiData: any; onReset: () =
     if (!aiData) return <p>AI response failed or is loading...</p>;
 
     return (
-        <Card className="border-2 border-primary/20 shadow-2xl animate-in zoom-in-95 duration-500">
+        <Card className="border-2 border-primary/20 shadow-2xl animate-in zoom-in-95 duration-500 bg-pink-300/30">
             <CardHeader className="bg-primary/5 border-b border-primary/10">
                 <CardTitle className="flex items-center gap-2 text-primary">
                     <Sparkles className="h-5 w-5" />

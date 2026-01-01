@@ -6,22 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="734e9cbb-d7b6-4a11-bfb8-a94c485f8bb9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/ai-analysis/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/ai-analysis/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/dashboard/DecisionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashboard/DecisionForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/dashboard/HistoryCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashboard/HistoryCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/dashboard/OutcomeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashboard/OutcomeForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/dashboard/ai-analysis.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashboard/ai-analysis.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/prisma.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/decision-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/decision-helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/drizzle/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/drizzle/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drizzle/meta/_journal.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/_journal.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/prisma.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/ai-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/ai-helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20251230041208_init/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20251230043247_phase1_schema/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/migration_lock.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +100,8 @@
       <updated>1767064362816</updated>
       <workItem from="1767064364021" duration="10774000" />
       <workItem from="1767140109976" duration="4393000" />
-      <workItem from="1767146906696" duration="12222000" />
+      <workItem from="1767146906696" duration="12730000" />
+      <workItem from="1767226559099" duration="10668000" />
     </task>
     <servers />
   </component>

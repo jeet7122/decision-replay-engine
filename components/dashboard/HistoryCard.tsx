@@ -34,7 +34,7 @@ export function HistoryCard({ data }: Props) {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Card className="hover:ring-2 hover:ring-primary/50 transition-all cursor-pointer overflow-hidden group">
+                <Card className="hover:ring-2 hover:ring-primary/50 bg-blue-500/20 transition-all cursor-pointer overflow-hidden group">
                     <div className={`h-1.5 w-full ${data?.outcomeStatus === 'negative' ? 'bg-red-500' : 'bg-green-500'}`} />
                     <CardContent className="p-5 space-y-4">
                         <div className="flex justify-between items-start">

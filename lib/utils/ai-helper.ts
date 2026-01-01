@@ -1,10 +1,10 @@
 'use server'
 import { GoogleGenAI } from "@google/genai";
 import { db } from "@/index";
-import { decisions, outcomes } from "@/db/drizzle/schema";
+import {aiReplays, decisions, outcomes} from "@/db/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { aiSchema } from "@/lib/utils/data-parsers";
-
+import {randomUUID} from "node:crypto";
 const ai = new GoogleGenAI({});
 
 export async function getResponseFromAI(decisionID: string) {
@@ -67,6 +67,7 @@ Be concise, technical, and honest. Only respond with valid JSON, no extra text.
     let parsed: any = {};
     try {
         parsed = JSON.parse(cleanedText);
+        await saveResponse(parsed, decisionID);
     } catch (err) {
         console.error("AI returned invalid JSON, using fallback:", err);
         // fallback object so Zod won't crash
@@ -86,4 +87,24 @@ Be concise, technical, and honest. Only respond with valid JSON, no extra text.
 function extractJson(text: string) {
     // Remove ```json and ``` if present
     return text.replace(/```json/g, "").replace(/```/g, "").trim();
+}
+
+async function saveResponse(data: any, decisionID: string) {
+    await db.insert(aiReplays).values({
+        id: randomUUID(),
+        decisionId: decisionID,
+        title: data.title,
+        rootCause: data.rootCause,
+        hiddenTradeoffs: data.hiddenTradeoffs,
+        bestAlternative: data.bestAlternative,
+        lesson: data.lesson,
+    })
+}
+
+export async function getResponseFromDB(decisionID: string) {
+    const ai_replays = await db.select().from(aiReplays).where(eq(aiReplays.decisionId, decisionID)).limit(1);
+    if (ai_replays.length === 0) {
+        throw new Error(`Response not found! Decision ID: ${decisionID}`);
+    }
+    return ai_replays[0];
 }

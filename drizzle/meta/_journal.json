@@ -8,6 +8,13 @@
       "when": 1767151999986,
       "tag": "0000_watery_pete_wisdom",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767227647588,
+      "tag": "0001_remarkable_power_man",
+      "breakpoints": true
     }
   ]
 }

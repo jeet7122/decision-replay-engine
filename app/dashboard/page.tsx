@@ -1,109 +1,17 @@
-"use client";
+import { auth } from "@clerk/nextjs/server";
+import DashboardClient from "@/app/dashboard/DashboardClient";
+import Link from "next/link";
 
-import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DecisionForm } from "@/components/dashboard/DecisionForm";
-import { OutcomeForm } from "@/components/dashboard/OutcomeForm";
-import { AIAnalysisView } from "@/components/dashboard/ai-analysis";
-import { HistoryCard } from "@/components/dashboard/HistoryCard";
-import {BrainCircuit, FileText, Activity, History, RefreshCcw} from "lucide-react";
-import {Card} from "@/components/ui/card";
+export default async function DashboardPage() {
+    const { userId, isAuthenticated } = await auth();
 
-export default function DashboardPage() {
-    // Logic to track which stage of the form the user is in
-    const [activeStage, setActiveStage] = useState("decision");
-    const [currentDecisionId, setCurrentDecisionId] = useState<string | null>(null);
-    const [aiData, setAiData] = useState<any | null>(null);
-    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    if (!isAuthenticated) {
+        return <div className='flex flex-col gap-5 py-4'>
+            <p className='text-center text-3xl'>You must be logged in to access the dashboard.</p>
+            <p className='hover:text-cyan-400 text-center text-3xl'><Link href='/sign-in'>Return To Login</Link></p>
+        </div>;
 
+    }
 
-    return (
-
-        <div className="container mx-auto p-4 md:p-8 space-y-12">
-            {/* --- STEPPED FORM SECTION --- */}
-            <section className="max-w-4xl mx-auto">
-                <div className="mb-8 text-center md:text-left">
-                    <h1 className="text-3xl font-bold tracking-tight">New Analysis</h1>
-                    <p className="text-muted-foreground">Follow the sequence to correlate your technical choices.</p>
-                </div>
-
-                <Tabs value={activeStage} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3 mb-8 h-12 bg-muted/50 p-1">
-                        <TabsTrigger value="decision" disabled={activeStage !== "decision"} className="gap-2">
-                            <FileText className="h-4 w-4" /> <span className="hidden sm:inline">1. Decision</span>
-                        </TabsTrigger>
-                        <TabsTrigger value="outcome" disabled={activeStage !== "outcome"} className="gap-2">
-                            <Activity className="h-4 w-4" /> <span className="hidden sm:inline">2. Outcome</span>
-                        </TabsTrigger>
-                        <TabsTrigger value="analysis" disabled={activeStage !== "analysis"} className="gap-2">
-                            <BrainCircuit className="h-4 w-4" /> <span className="hidden sm:inline">3. AI Replay</span>
-                        </TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="decision">
-                        <DecisionForm onComplete={(id) => {
-                            setCurrentDecisionId(id);
-                            setActiveStage("outcome");
-                        }} />
-                    </TabsContent>
-
-                    <TabsContent value="outcome">
-                        <OutcomeForm
-                            decisionId={currentDecisionId!}
-                            onComplete={async () => {
-                                setIsAnalyzing(true);
-                                const response = await fetch(`/api/ai-analysis?decisionId=${currentDecisionId}`);
-                                const data = await response.json();
-                                setAiData(data);
-                                setIsAnalyzing(false);
-                                setActiveStage("analysis");
-                            }}
-                        />
-                    </TabsContent>
-
-                    <TabsContent value="analysis">
-                        <AIAnalysisView
-                            aiData={aiData}
-                            onReset={() => {
-                                setActiveStage("decision");
-                                setCurrentDecisionId(null);
-                                setAiData(null);
-                            }}
-                        />
-                    </TabsContent>
-                </Tabs>
-            </section>
-
-            <hr className="border-border" />
-
-            {/* --- PAGINATED HISTORY SECTION --- */}
-            <section className="space-y-6">
-                <div className="flex items-center gap-2">
-                    <History className="h-5 w-5 text-primary" />
-                    <h2 className="text-2xl font-bold tracking-tight">Recent Decision Chains</h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {/* We would map through your Prisma data here */}
-                    <HistoryCard
-                        outcomeStatus="negative"
-                        date="Dec 28, 2025"
-                        cost="12h"
-                    />
-                    <HistoryCard
-                        title="Skipped Redis Cache"
-                        outcomeStatus="neutral"
-                        date="Dec 20, 2025"
-                        cost="0h"
-                    />
-                    <HistoryCard
-                        title="Microservices for MVP"
-                        outcomeStatus="negative"
-                        date="Nov 15, 2025"
-                        cost="40h"
-                    />
-                </div>
-            </section>
-        </div>
-    );
+    return <DashboardClient userId={userId} />;
 }

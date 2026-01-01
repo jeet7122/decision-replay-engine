@@ -55,13 +55,26 @@ export const outcomes = pgTable("outcomes", {
 });
 
 // -----------------------------
-// AI_Replays Table
+// AI_Replays Table (Structured)
 // -----------------------------
 export const aiReplays = pgTable("ai_replays", {
     id: varchar("id", { length: 191 }).primaryKey(),
+
     decisionId: varchar("decision_id", { length: 191 })
         .notNull()
-        .references(() => decisions.id),
-    analysis: text("analysis").notNull(),
-    generatedAt: timestamp("generated_at").defaultNow(),
+        .references(() => decisions.id, { onDelete: "cascade" }),
+
+    title: text("title").notNull(),
+
+    rootCause: text("root_cause").notNull(),
+
+    hiddenTradeoffs: json("hidden_tradeoffs")
+        .$type<string[]>()
+        .notNull(),
+
+    bestAlternative: text("best_alternative").notNull(),
+
+    lesson: text("lesson").notNull(),
+
+    generatedAt: timestamp("generated_at").defaultNow().notNull(),
 });

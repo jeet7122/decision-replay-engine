@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {saveDecision} from "@/lib/utils/decision-helper";
+import { Trash } from 'lucide-react'
 
 export function DecisionForm({ onComplete }: { onComplete: (id: string) => void }) {
     const { register, handleSubmit, setValue, watch, control } = useForm({
@@ -33,7 +34,7 @@ export function DecisionForm({ onComplete }: { onComplete: (id: string) => void 
     };
 
     return (
-        <Card className="border-2 border-primary/10 shadow-xl">
+        <Card className="border-2 bg-pink-300/20 border-primary/10 shadow-xl">
             <CardHeader>
                 <CardTitle>Log a Decision</CardTitle>
             </CardHeader>
@@ -64,8 +65,9 @@ export function DecisionForm({ onComplete }: { onComplete: (id: string) => void 
                                 type="button"
                                 variant="destructive"
                                 onClick={() => remove(index)}
-                                className="h-9"
+                                className="h-9 text-black hover:bg-red-500/70"
                             >
+                                <Trash/>
                                 Remove
                             </Button>
                         </div>

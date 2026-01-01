@@ -21,7 +21,7 @@ export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; on
     };
 
     return (
-        <Card className="border-2 border-amber-500/10 shadow-xl animate-in fade-in slide-in-from-bottom-4">
+        <Card className="border-2 border-amber-500/10 bg-pink-300/30 shadow-xl animate-in fade-in slide-in-from-bottom-4">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <AlertCircle className="h-5 w-5 text-amber-500" />
