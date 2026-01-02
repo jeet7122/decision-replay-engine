@@ -106,7 +106,7 @@ Be concise, technical, and honest. Only respond with valid JSON, no extra text.
     try {
         parsed = JSON.parse(cleanedText);
         await saveResponse(parsed, decisionID);
-        await db.update(users).set({aiUsageCount: sql`(users.aiUsageCount + 1)`})
+        await db.update(users).set({aiUsageCount: sql`${users.aiUsageCount} + 1`})
             .where(eq(users.id, userId));
     } catch (err) {
         console.error("AI returned invalid JSON, using fallback:", err);
