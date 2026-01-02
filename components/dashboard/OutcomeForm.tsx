@@ -45,7 +45,7 @@ export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; on
                         <SelectTrigger>
                             <SelectValue placeholder="Select type" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className='bg-white border-2 border-amber-500'>
                             <SelectItem value="positive">Positive (Success)</SelectItem>
                             <SelectItem value="neutral">Neutral (As expected)</SelectItem>
                             <SelectItem value="negative">Negative (Friction/Debt)</SelectItem>
