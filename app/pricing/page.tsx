@@ -4,17 +4,27 @@ import {PLANS} from "@/data/frontend-data";
 
 export default function PricingPage() {
     const handleCheckout = async (planId: "pro" | "pro_plus") => {
-        // 1. Ensure Stripe customer
-        await fetch("/api/stripe/ensure-customer", { method: "POST" });
+        try {
+            await fetch("/api/stripe/ensure-customer", { method: "POST" });
 
-        // 2. Create checkout session
-        const res = await fetch("/api/stripe/create-checkout-session", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ plan: planId }),
-        });
-        const { url } = await res.json();
-        window.location.href = url;
+            const res = await fetch("/api/stripe/create-checkout-session", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ plan: planId }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.error || "Something went wrong");
+                return;
+            }
+
+            window.location.href = data.url;
+        } catch (err) {
+            console.error(err);
+            alert("Failed to create checkout session");
+        }
     };
 
     return (

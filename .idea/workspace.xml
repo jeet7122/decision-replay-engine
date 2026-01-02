@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="734e9cbb-d7b6-4a11-bfb8-a94c485f8bb9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/clerk-webhook/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/clerk-webhook/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/stripe/create-checkout-session/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/stripe/create-checkout-session/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pricing/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/pricing/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

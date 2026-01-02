@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
                 .from(users)
                 .where(eq(users.id, userId));
 
-            if (!existing.length) {
+            if (existing.length < 0) {
                 await db.insert(users).values({
                     id: userId,
                     createdAt: new Date(),
