@@ -7,15 +7,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AlertCircle, Clock } from "lucide-react";
 import {saveOutcome} from "@/lib/utils/outcome-helper";
 import {getResponseFromAI} from "@/lib/utils/ai-helper";
+import toast from "react-hot-toast";
 
 export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; onComplete: () => void }) {
     const { register, handleSubmit, setValue } = useForm();
 
     const onSubmit = async (data: any) => {
-        const savedOutcome = await saveOutcome(data, decisionId);
-        const aiResponse = await getResponseFromAI(decisionId);
-        // API Call: POST /api/outcomes { ...data, decisionId }
-        onComplete();
+        try {
+            const savedOutcome = await saveOutcome(data, decisionId);
+            const aiResponse = await getResponseFromAI(decisionId);
+            // API Call: POST /api/outcomes { ...data, decisionId }
+            onComplete();
+
+        }
+        catch (err: any) {
+            if (err.code === "USAGE_LIMIT_EXCEEDED"){
+                toast.error("You have reached your AI usage limit. Upgrade your plan!");
+            }
+            else {
+                toast.error("Something went wrong. Try again later.");
+            }
+        }
     };
 
     return (
