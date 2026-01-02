@@ -17,7 +17,7 @@ const navLinks = [
     {name: "Methodology", href: "/#how-it-works"},
     {name: "Features", href: "/#features"},
     {name: "Analysis", href: "/#testimonials"},
-    {name: "Pricing", href: "/#pricing"},
+    {name: "Pricing", href: "/pricing"},
 ];
 
 export default function Navbar() {
@@ -30,7 +30,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
                         <div
                             className="h-9 w-9 rounded-xl bg-primary flex items-center justify-center shadow-sm shadow-primary/20">
-                            <Zap className="text-primary-foreground h-5 w-5 fill-current"/>
+                            <img src='/favicon.ico' alt='Logo' className='w-6 h-6' />
                         </div>
                         <span className="font-bold text-xl tracking-tighter">Replay<span
                             className="text-primary">Engine</span></span>

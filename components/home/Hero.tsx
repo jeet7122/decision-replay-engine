@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, RotateCcw, GitBranch } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -25,9 +26,11 @@ export default function Hero() {
                             would have scaled with your real-world traffic.
                         </p>
                         <div className="flex flex-col w-full gap-3 sm:flex-row sm:w-auto">
-                            <Button size="lg" className="h-12 px-8">
-                                Start Replaying <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
+                            <Link href='/dashboard'>
+                                <Button size="lg" className="h-12 px-8">
+                                    Start Replaying <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                            </Link>
                             <Button size="lg" variant="outline" className="h-12 px-8">
                                 View Demo
                             </Button>
