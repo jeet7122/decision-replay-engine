@@ -1,13 +1,51 @@
 'use server'
 import { GoogleGenAI } from "@google/genai";
 import { db } from "@/index";
-import {aiReplays, decisions, outcomes} from "@/db/drizzle/schema";
-import { eq } from "drizzle-orm";
+import {aiReplays, decisions, outcomes, users} from "@/db/drizzle/schema";
+import {eq, sql} from "drizzle-orm";
 import { aiSchema } from "@/lib/utils/data-parsers";
 import {randomUUID} from "node:crypto";
+import {auth} from "@clerk/nextjs/server";
+import {getUserById} from "@/lib/utils/user-helper";
 const ai = new GoogleGenAI({});
 
 export async function getResponseFromAI(decisionID: string) {
+    const { userId } = await auth();
+    if (!userId) {
+        throw new Error("Login Required");
+    }
+
+    const user = await getUserById(userId);
+
+    // -----------------------------
+    // 🔐 AI Usage Reset + Enforcement
+    // -----------------------------
+    const now = new Date();
+
+    if (user.aiUsageResetAt && now > user.aiUsageResetAt) {
+        await db.update(users).set({
+            aiUsageCount: 0,
+            aiUsageResetAt: new Date(
+                new Date().setMonth(new Date().getMonth() + 1)
+            ),
+        }).where(eq(users.id, userId));
+
+        user.aiUsageCount = 0;
+    }
+
+    const AI_LIMITS = {
+        free: 5,
+        pro: 50,
+        pro_plus: Infinity,
+    } as const;
+
+    const limit = AI_LIMITS[user.plan];
+
+    if (limit !== Infinity && user.aiUsageCount >= limit) {
+        throw new Error("Upgrade your plan to continue");
+    }
+
+
     const [decision] = await db
         .select()
         .from(decisions)
@@ -68,6 +106,8 @@ Be concise, technical, and honest. Only respond with valid JSON, no extra text.
     try {
         parsed = JSON.parse(cleanedText);
         await saveResponse(parsed, decisionID);
+        await db.update(users).set({aiUsageCount: sql`(users.aiUsageCount + 1)`})
+            .where(eq(users.id, userId));
     } catch (err) {
         console.error("AI returned invalid JSON, using fallback:", err);
         // fallback object so Zod won't crash

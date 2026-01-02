@@ -10,7 +10,8 @@ export async function POST(request: NextRequest) {
         const evt = await verifyWebhook(request, {signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET!});
 
         if (evt.type === "user.created") {
-            const { id : userId } = evt.data;
+            const { id : userId, email_addresses} = evt.data;
+            const email = email_addresses[0]?.email_address;
 
             const existing = await db
                 .select()
@@ -21,6 +22,7 @@ export async function POST(request: NextRequest) {
                 await db.insert(users).values({
                     id: userId,
                     createdAt: new Date(),
+                    email: email,
                 });
             }
         }

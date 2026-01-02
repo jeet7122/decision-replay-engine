@@ -15,10 +15,39 @@ import {
 export const outcomeType = pgEnum("OutcomeType", ["positive", "neutral", "negative"]);
 
 // -----------------------------
+// Stripe / Billing Enums
+// -----------------------------
+export const planType = pgEnum("plan_type", [
+    "free",
+    "pro",
+    "pro_plus",
+]);
+
+export const subscriptionStatus = pgEnum("subscription_status", [
+    "active",
+    "past_due",
+    "canceled",
+    "incomplete",
+]);
+
+
+// -----------------------------
 // Users Table
 // -----------------------------
 export const users = pgTable("users", {
     id: varchar("id", { length: 191 }).primaryKey(),
+    email: varchar("email", { length: 255 }).notNull(),
+
+    // Stripe
+    stripeCustomerId: varchar("stripe_customer_id", { length: 255 }),
+    stripeSubscriptionId: varchar("stripe_subscription_id", { length: 255 }),
+
+    plan: planType("plan").default("free").notNull(),
+    subscriptionStatus: subscriptionStatus("subscription_status"),
+
+    // AI usage
+    aiUsageCount: integer("ai_usage_count").default(0).notNull(),
+    aiUsageResetAt: timestamp("ai_usage_reset_at"),
     createdAt: timestamp("created_at").defaultNow(),
 });
 
