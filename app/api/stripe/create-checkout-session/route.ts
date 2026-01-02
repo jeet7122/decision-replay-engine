@@ -45,8 +45,8 @@ export async function POST(req: NextRequest) {
             mode: "subscription",
             customer: user.stripeCustomerId,
             line_items: [{ price: priceId, quantity: 1 }],
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
-            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing`,
+            success_url: `https://${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
+            cancel_url: `https://${process.env.NEXT_PUBLIC_APP_URL}/pricing`,
             metadata: { userId: user.id, plan },
         });
 
