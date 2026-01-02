@@ -18,7 +18,7 @@ export default function PricingPage() {
     };
 
     return (
-        <div className="flex flex-col md:flex-row gap-6 justify-center items-start p-8">
+        <div className="flex flex-col md:flex-row gap-6 justify-center items-start p-8 bg-/20">
             {PLANS.map((plan) => (
                 <div key={plan.name} className="border p-6 rounded-xl shadow-lg w-80">
                     <h2 className="text-2xl font-bold mb-2">{plan.name}</h2>
