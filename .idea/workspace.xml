@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="734e9cbb-d7b6-4a11-bfb8-a94c485f8bb9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/components/dashboard/OutcomeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashboard/OutcomeForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/ai-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/ai-helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

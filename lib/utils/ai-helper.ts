@@ -42,7 +42,7 @@ export async function getResponseFromAI(decisionID: string) {
     const limit = AI_LIMITS[user.plan];
 
     if (limit !== Infinity && user.aiUsageCount >= limit) {
-        throw new Error("Upgrade your plan to continue");
+        throw new UsageLimitError("Upgrade your plan to continue");
     }
 
 
