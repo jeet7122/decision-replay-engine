@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Twitter, Mail, Activity, ArrowRight } from 'lucide-react';
+import Link from "next/link";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -26,11 +27,10 @@ const Footer = () => {
 
                     {/* Product Links */}
                     <div>
-                        <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Product</h3>
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Services</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><a href="#" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Live Replays</a></li>
-                            <li><a href="#" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Event Logs</a></li>
-                            <li><a href="#" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Visualizer</a></li>
+                            <li><Link href="/services" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">View all Services</Link></li>
+                            <li><a href="/pricing" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pricing</a></li>
                         </ul>
                     </div>
 
@@ -38,9 +38,9 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Resources</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><a href="#" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Documentation</a></li>
-                            <li><a href="#" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">API Reference</a></li>
-                            <li><a href="#" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Guides</a></li>
+                            <li><Link href="/docs" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Documentation</Link></li>
+                            <li><Link href="/guide" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Guides</Link></li>
+                            <li><Link href="/demo" className="text-slate-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tutorial/Demo</Link></li>
                         </ul>
                     </div>
 
@@ -61,19 +61,16 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="pt-8 border-t border-slate-200 dark:border-white flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs text-slate-400">
                         © {currentYear} Decision Replay Engine. All rights reserved.
                     </p>
 
                     <div className="flex items-center gap-6">
-                        <a href="#" className="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
+                        <a href="https://github.com/jeet7122/decision-replay-engine" className="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
                             <Github className="w-5 h-5" />
                         </a>
-                        <a href="#" className="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
-                            <Twitter className="w-5 h-5" />
-                        </a>
-                        <a href="#" className="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
+                        <a href="mailto:jeetthakkar2612@gmail.com" className="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
                             <Mail className="w-5 h-5" />
                         </a>
                     </div>

@@ -29,7 +29,7 @@ export default function PricingPage() {
 
     return (
         <div className="flex flex-col gap-4 min-h-screen bg-slate-500/20 items-center">
-            <h2 className="text-center text-3xl mt-4">Plans & Pricing</h2>
+            <h2 className="text-center text-3xl mt-4">AI Usage & Plans</h2>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch p-8">
                 {PLANS.map((plan) => (
                     <div
