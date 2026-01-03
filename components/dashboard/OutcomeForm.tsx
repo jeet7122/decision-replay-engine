@@ -21,7 +21,7 @@ export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; on
 
         }
         catch (err: any) {
-            if (err.code === "USAGE_LIMIT_EXCEEDED"){
+            if (err && err.code === "USAGE_LIMIT_EXCEEDED"){
                 toast.error("You have reached your AI usage limit. Upgrade your plan!");
             }
             else {
