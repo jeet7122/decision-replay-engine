@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="734e9cbb-d7b6-4a11-bfb8-a94c485f8bb9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/stripe/webhooks/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/stripe/webhooks/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/DashboardClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/DashboardClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/dashboard/OutcomeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashboard/OutcomeForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavbarClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/drizzle/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/drizzle/schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drizzle/meta/_journal.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/_journal.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/ai-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/ai-helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/billing-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/billing-helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +97,7 @@
       <workItem from="1767146906696" duration="12730000" />
       <workItem from="1767226559099" duration="16699000" />
       <workItem from="1767319928976" duration="8490000" />
-      <workItem from="1767398468335" duration="6189000" />
+      <workItem from="1767398468335" duration="7028000" />
     </task>
     <servers />
   </component>

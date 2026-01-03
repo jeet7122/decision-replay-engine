@@ -5,7 +5,6 @@ import {auth} from "@clerk/nextjs/server";
 import {db} from "@/index";
 import {users} from "@/db/drizzle/schema";
 import {eq} from "drizzle-orm";
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function cancelSubscription(){
@@ -25,7 +24,9 @@ export async function cancelSubscription(){
 
 export async function getUserCurrentPlan():Promise<string> {
     const {userId} = await auth();
-    if (!userId) throw new Error("Unauthorized");
+    if (!userId) {
+        return "free";
+    }
     const user = await db.select().from(users).where(eq(users.id, userId)).limit(1);
     if (user.length === 0) throw new Error("No such user");
     return user[0].plan ?? "free";
