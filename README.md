@@ -20,11 +20,15 @@
 
 ## 📸 Screenshots
 
-### Dashboard Overview
-![Dashboard Screenshot](./screenshots/dashboard.png)
+### Decision Logger Form
+![Decision Logger Form Screenshot](./docs-assets/dcf.png)
 
-### Decision Analysis
-![Decision Analysis Screenshot](./screenshots/analysis.png)
+### Decision Outcome Logger
+![Dashboard Screenshot](./docs-assets/ocf.png)
+
+### AI Analysis
+![Dashboard Screenshot](./docs-assets/airp.png)
+
 
 ---
 
