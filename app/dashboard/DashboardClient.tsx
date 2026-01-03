@@ -7,8 +7,7 @@ import { OutcomeForm } from "@/components/dashboard/OutcomeForm";
 import { AIAnalysisView } from "@/components/dashboard/ai-analysis";
 import { HistoryCard } from "@/components/dashboard/HistoryCard";
 import { BrainCircuit, FileText, Activity, History } from "lucide-react";
-import {useSearchParams} from "next/navigation";
-import {useRouter} from "next/router";
+import {useSearchParams, useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 
 type AIData = {
@@ -57,16 +56,14 @@ export default function DashboardClient({userId}: Props) {
     const searchParams = useSearchParams();
     const router = useRouter();
 
+    const success = searchParams.get("success");
+
     useEffect(() => {
-        const success = searchParams.get('success');
-        if (success === "true"){
+        if (success === "true") {
             toast.success("Payment successful! 🎉");
-
-            void router.replace("/dashboard");
+            router.replace("/dashboard");
         }
-
-    }, [searchParams, router]);
-
+    }, [success, router]);
     // --- Fetch history on mount ---
     useEffect(() => {
         const fetchHistory = async () => {
