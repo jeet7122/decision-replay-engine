@@ -28,6 +28,6 @@ export async function getUserCurrentPlan():Promise<string> {
         return "free";
     }
     const user = await db.select().from(users).where(eq(users.id, userId)).limit(1);
-    if (user.length === 0) throw new Error("No such user");
+    if (user.length === 0) return "free"
     return user[0].plan ?? "free";
 }
