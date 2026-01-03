@@ -92,6 +92,6 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 ## 🔗 Links
 
 - Live Demo: https://decision-replay-engine.vercel.app  
-- Documentation: https://github.com/jeet7122/decision-replay-engine/wiki
+- Documentation: https://decision-replay-engine.vercel.app/docs
 
 ---
