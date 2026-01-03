@@ -72,7 +72,9 @@
 
 - Frontend: Next.js, React, Tailwind CSS  
 - Backend: Node.js, Drizzle ORM, Neon Database  
-- Authentication: Clerk  
+- Authentication: Clerk
+- Payment-Gateway: Stripe
+- Communications: Webhooks  
 - AI Insights: Custom AI module  
 
 ---
