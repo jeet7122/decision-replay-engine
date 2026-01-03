@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {Menu, Search, Zap} from "lucide-react";
+import {Menu, Search, Zap, XIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {
     Sheet,
@@ -11,7 +11,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
+import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, UserProfile} from "@clerk/nextjs";
 
 const navLinks = [
     {name: "Methodology", href: "/#how-it-works"},
@@ -20,7 +20,7 @@ const navLinks = [
     {name: "Pricing", href: "/pricing"},
 ];
 
-export function NavbarClient({plan}: {plan: string}) {
+export function NavbarClient({plan}: { plan: string }) {
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -30,7 +30,7 @@ export function NavbarClient({plan}: {plan: string}) {
                     <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
                         <div
                             className="h-9 w-9 rounded-xl bg-primary flex items-center justify-center shadow-sm shadow-primary/20">
-                            <img src='/favicon.ico' alt='Logo' className='w-6 h-6' />
+                            <img src='/favicon.ico' alt='Logo' className='w-6 h-6'/>
                         </div>
                         <span className="font-bold text-xl tracking-tighter">Replay<span
                             className="text-primary">Engine</span></span>
@@ -61,11 +61,19 @@ export function NavbarClient({plan}: {plan: string}) {
                     </SignedOut>
                     <SignedIn>
                         <div className="hidden sm:flex items-center gap-2">
-                            {plan !== "free" && (
-                                <Link href="/cancel-subscription">cancel plan</Link>
-                            )}
-                            <Link href='/dashboard'>Dashboard</Link>
-                            <UserButton/>
+                            <Link href="/dashboard">Dashboard</Link>
+
+                            <UserButton>
+                                <UserButton.MenuItems>
+                                    {plan !== "free" && (
+                                        <UserButton.Link
+                                            href="/cancel-subscription"
+                                            label="Cancel Plan"
+                                            labelIcon={<XIcon className="h-4 w-4" />}
+                                        />
+                                    )}
+                                </UserButton.MenuItems>
+                            </UserButton>
                         </div>
                     </SignedIn>
                     {/* Mobile Menu */}
@@ -95,15 +103,19 @@ export function NavbarClient({plan}: {plan: string}) {
                                 <SignedIn>
                                     <div className="flex flex-col gap-3 pt-4">
                                         {plan !== "free" && (
-                                            <Link href="/cancel-subscription" className='text-lg font-semibold transition-colors hover:text-primary border-b border-border pb-2'>cancel plan</Link>
+                                            <Link href="/cancel-subscription"
+                                                  className='text-lg font-semibold transition-colors hover:text-primary border-b border-border pb-2'>cancel
+                                                plan</Link>
                                         )}
-                                        <Link href="/dashboard" className='text-lg font-semibold transition-colors hover:text-primary border-b border-border pb-2'>Dashboard</Link>
+                                        <Link href="/dashboard"
+                                              className='text-lg font-semibold transition-colors hover:text-primary border-b border-border pb-2'>Dashboard</Link>
                                     </div>
                                 </SignedIn>
                                 <SignedOut>
                                     <div className="flex flex-col gap-3 pt-4">
-                                       <SignUpButton><Button className="w-full">Get Started</Button></SignUpButton>
-                                        <SignInButton><Button variant="outline" className="w-full">Log in</Button></SignInButton>
+                                        <SignUpButton><Button className="w-full">Get Started</Button></SignUpButton>
+                                        <SignInButton><Button variant="outline" className="w-full">Log
+                                            in</Button></SignInButton>
                                     </div>
                                 </SignedOut>
                             </div>
