@@ -49,6 +49,7 @@ export const users = pgTable("users", {
     aiUsageCount: integer("ai_usage_count").default(0).notNull(),
     aiUsageResetAt: timestamp("ai_usage_reset_at"),
     createdAt: timestamp("created_at").defaultNow(),
+    canceledAt: timestamp("canceled_at"),
 });
 
 // -----------------------------

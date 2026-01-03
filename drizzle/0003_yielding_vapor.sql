@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "canceled_at" timestamp;

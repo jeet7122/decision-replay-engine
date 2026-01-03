@@ -5,6 +5,7 @@ import Link from "next/link";
 export default async function DashboardPage() {
     const { userId, isAuthenticated } = await auth();
 
+
     if (!isAuthenticated) {
         return <div className='flex flex-col gap-5 py-4'>
             <p className='text-center text-3xl'>You must be logged in to access the dashboard.</p>

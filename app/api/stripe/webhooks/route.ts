@@ -35,6 +35,7 @@ export async function POST(req: NextRequest){
 
     try {
         switch (event.type) {
+            //New Subscription
             case "checkout.session.completed":
                 const session = data as Stripe.Checkout.Session;
                 const plan = session.metadata?.plan as "pro" | "pro_plus";
@@ -50,6 +51,7 @@ export async function POST(req: NextRequest){
                     })
                     .where(eq(users.stripeCustomerId, session.customer as string));
                 break;
+            // Invoice Generation
             case "invoice.payment_succeeded":
                 // Payment successful, ensure status is active
                 const invoice = data as Stripe.Invoice;
@@ -59,11 +61,24 @@ export async function POST(req: NextRequest){
                         .where(eq(users.stripeCustomerId, invoice.customer as string));
                 }
                 break;
+
+            // Cancel Subscription update
+            case "customer.subscription.updated":
+                const sub = event.data.object as Stripe.Subscription;
+                if(sub.cancel_at_period_end){
+                    await db.update(users)
+                        .set({
+                            canceledAt: new Date(sub.cancel_at! * 1000),
+                        }).where(eq(users.stripeCustomerId, sub.id));
+                }
+                break;
+
+             // Delete sub
             case "customer.subscription.deleted":
                 const subscription = data as Stripe.Subscription;
                 if (subscription.customer) {
                     await db.update(users)
-                        .set({ subscriptionStatus: "canceled", plan: "free" })
+                        .set({ subscriptionStatus: "canceled", plan: "free", canceledAt: null })
                         .where(eq(users.stripeCustomerId, subscription.customer as string));
                 }
                 break;

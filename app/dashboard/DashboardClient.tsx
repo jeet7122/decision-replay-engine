@@ -7,6 +7,9 @@ import { OutcomeForm } from "@/components/dashboard/OutcomeForm";
 import { AIAnalysisView } from "@/components/dashboard/ai-analysis";
 import { HistoryCard } from "@/components/dashboard/HistoryCard";
 import { BrainCircuit, FileText, Activity, History } from "lucide-react";
+import {useSearchParams} from "next/navigation";
+import {useRouter} from "next/router";
+import toast from "react-hot-toast";
 
 type AIData = {
     title: string;
@@ -49,6 +52,20 @@ export default function DashboardClient({userId}: Props) {
 
     // --- History State ---
     const [history, setHistory] = useState<HistoryItem[] | null>(null);
+
+    //Success Payment Redirection
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    useEffect(() => {
+        const success = searchParams.get('success');
+        if (success === "true"){
+            toast.success("Payment successful! 🎉");
+
+            void router.replace("/dashboard");
+        }
+
+    }, [searchParams, router]);
 
     // --- Fetch history on mount ---
     useEffect(() => {
