@@ -9,6 +9,8 @@ import { HistoryCard } from "@/components/dashboard/HistoryCard";
 import { BrainCircuit, FileText, Activity, History } from "lucide-react";
 import {useSearchParams, useRouter} from "next/navigation";
 import toast from "react-hot-toast";
+import { AIAnalysisSkeleton } from "@/components/dashboard/AiAnalysisSkeleton";
+
 
 type AIData = {
     title: string;
@@ -119,6 +121,7 @@ export default function DashboardClient({userId}: Props) {
                                 decisionId={currentDecisionId}
                                 onComplete={async () => {
                                     setIsAnalyzing(true);
+                                    setActiveStage("analysis");
                                     try {
                                         const response = await fetch(`/api/ai-analysis?decisionId=${currentDecisionId}`);
                                         const data: AIData = await response.json();
@@ -127,13 +130,13 @@ export default function DashboardClient({userId}: Props) {
                                         console.error("Failed to fetch AI analysis:", err);
                                     }
                                     setIsAnalyzing(false);
-                                    setActiveStage("analysis");
                                 }}
                             />
                         )}
                     </TabsContent>
 
                     <TabsContent value="analysis">
+                        {isAnalyzing && (<AIAnalysisSkeleton/>)}
                         <AIAnalysisView
                             aiData={aiData}
                             onReset={() => {

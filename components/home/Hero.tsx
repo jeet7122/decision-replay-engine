@@ -31,9 +31,11 @@ export default function Hero() {
                                     Start Replaying <ArrowRight className="ml-2 h-4 w-4" />
                                 </Button>
                             </Link>
-                            <Button size="lg" variant="outline" className="h-12 px-8">
-                                View Demo
-                            </Button>
+                            <Link href='/demo'>
+                                <Button size="lg" variant="outline" className="h-12 px-8">
+                                    View Demo
+                                </Button>
+                            </Link>
                         </div>
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
                             <div className="flex -space-x-2">

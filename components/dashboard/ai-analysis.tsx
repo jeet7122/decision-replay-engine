@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BrainCircuit, Sparkles, RefreshCcw, TrendingUp } from "lucide-react";
 
 export function AIAnalysisView({ aiData, onReset }: { aiData: any; onReset: () => void }) {
-    if (!aiData) return <p>AI response failed or is loading...</p>;
+    if (!aiData) return null;
 
     return (
         <Card className="border-2 border-primary/20 shadow-2xl animate-in zoom-in-95 duration-500 bg-pink-300/30">
