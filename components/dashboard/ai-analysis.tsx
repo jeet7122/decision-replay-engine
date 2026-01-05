@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BrainCircuit, Sparkles, RefreshCcw, TrendingUp } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export function AIAnalysisView({ aiData, onReset }: { aiData: any; onReset: () => void }) {
     if (!aiData) return null;

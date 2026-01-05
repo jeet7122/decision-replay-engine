@@ -14,8 +14,8 @@ export function OutcomeForm({ decisionId, onComplete }: { decisionId: string; on
 
     const onSubmit = async (data: any) => {
         try {
-            const savedOutcome = await saveOutcome(data, decisionId);
-            const aiResponse = await getResponseFromAI(decisionId);
+            await saveOutcome(data, decisionId);
+            await getResponseFromAI(decisionId);
             // API Call: POST /api/outcomes { ...data, decisionId }
             onComplete();
 
