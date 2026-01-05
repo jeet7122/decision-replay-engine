@@ -20,11 +20,15 @@
 
 ## 📸 Screenshots
 
-### Dashboard Overview
-![Dashboard Screenshot](./screenshots/dashboard.png)
+### Decision Logger Form
+![Decision Logger Form Screenshot](./docs-assets/dcf.png)
 
-### Decision Analysis
-![Decision Analysis Screenshot](./screenshots/analysis.png)
+### Decision Outcome Logger
+![Dashboard Screenshot](./docs-assets/ocf.png)
+
+### AI Analysis
+![Dashboard Screenshot](./docs-assets/airp.png)
+
 
 ---
 
@@ -68,7 +72,9 @@
 
 - Frontend: Next.js, React, Tailwind CSS  
 - Backend: Node.js, Drizzle ORM, Neon Database  
-- Authentication: Clerk  
+- Authentication: Clerk
+- Payment-Gateway: Stripe
+- Communications: Webhooks  
 - AI Insights: Custom AI module  
 
 ---
@@ -88,6 +94,6 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 ## 🔗 Links
 
 - Live Demo: https://decision-replay-engine.vercel.app  
-- Documentation: https://github.com/jeet7122/decision-replay-engine/wiki
+- Documentation: https://decision-replay-engine.vercel.app/docs
 
 ---
